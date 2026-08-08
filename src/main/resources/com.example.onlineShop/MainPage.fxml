@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-        <?import javafx.scene.control.Button?>
-        <?import javafx.scene.control.Label?>
-        <?import javafx.scene.layout.AnchorPane?>
-        <?import javafx.scene.layout.VBox?>
-        <?import javafx.scene.layout.StackPane?>
-        <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/23.0.1"
@@ -15,7 +15,6 @@
 
     <children>
 
-        <!-- Main Content -->
         <VBox alignment="CENTER"
               spacing="22.0"
               prefWidth="800.0"
@@ -31,7 +30,6 @@
                 </font>
             </Label>
 
-            <!-- Subtitle -->
             <Label text="Welcome to Online Shop"
                    textFill="#B8C6D9">
                 <font>
@@ -39,7 +37,6 @@
                 </font>
             </Label>
 
-            <!-- Buttons -->
             <VBox alignment="CENTER"
                   spacing="14.0"
                   maxWidth="260.0">
