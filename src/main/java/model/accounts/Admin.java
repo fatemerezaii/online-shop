@@ -1,7 +1,7 @@
 package model.accounts;
 
-import Model.Product.Product;
-import Model.Request;
+import model.products.Product;
+import model.Request;
 
 import java.util.ArrayList;
 import java.util.List;
