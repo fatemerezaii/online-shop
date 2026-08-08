@@ -3,7 +3,10 @@ package view;
 import controller.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import model.accounts.Customer;
 
 import java.io.IOException;
 
@@ -20,6 +23,12 @@ public class UserMenuController {
 
     @FXML
     private Button profileBtn;
+
+    private Customer customer;
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     @FXML
     void credit(ActionEvent event) throws IOException {
@@ -38,7 +47,11 @@ public class UserMenuController {
 
     @FXML
     void profile(ActionEvent event) throws IOException {
-        SceneManager.switchScene(event, "Profile.fxml");
-    }
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/onlineShop/Profile.fxml"));
+        Parent root = loader.load();
+        ProfileController controller = loader.getController();
+        controller.setCustomer(customer);
+        SceneManager.switchScene(event, root);
+    }
 }
