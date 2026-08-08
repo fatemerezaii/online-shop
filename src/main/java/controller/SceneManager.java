@@ -13,7 +13,7 @@ import java.io.IOException;
 public class SceneManager {
 
     public static void switchScene(ActionEvent event, String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(SceneManager.class.getResource("/com/example/mvc/" + fxmlFile));
+        Parent root = FXMLLoader.load(SceneManager.class.getResource("/com/example/onlineShop/" + fxmlFile));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

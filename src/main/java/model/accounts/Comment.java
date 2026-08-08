@@ -1,7 +1,7 @@
 package model.accounts;
 
 import enums.CommentStatus;
-import Model.Account.Customer;
+import model.accounts.Customer;
 
 public class Comment {
     private Customer user;
