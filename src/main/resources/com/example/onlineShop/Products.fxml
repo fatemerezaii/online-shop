@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.ProductsController"
+            style="-fx-background-color: #F5F7FA;">
+
+    <top>
+        <VBox spacing="12.0"
+              style="-fx-background-color: #172B4D;
+                     -fx-padding: 22 35 22 35;">
+
+            <HBox alignment="CENTER_LEFT" spacing="15">
+
+                <VBox HBox.hgrow="ALWAYS">
+                    <Label text="Products"
+                           textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="28"/>
+                        </font>
+                    </Label>
+
+                    <Label text="Find the perfect product for you"
+                           textFill="#B8C7DA">
+                        <font>
+                            <Font size="13"/>
+                        </font>
+                    </Label>
+                </VBox>
+
+                <Button text="Back"
+                        onAction="#back"
+                        prefWidth="90"
+                        prefHeight="35"
+                        style="-fx-background-color: transparent;
+                               -fx-border-color: #FFFFFF;
+                               -fx-border-radius: 8;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-cursor: hand;"/>
+
+            </HBox>
+
+            <HBox spacing="10">
+
+                <TextField fx:id="searchField"
+                           promptText="Search products..."
+                           HBox.hgrow="ALWAYS"
+                           prefHeight="42"
+                           onAction="#search"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-radius: 8;
+                                  -fx-border-color: #D7DEE8;
+                                  -fx-background-color: white;
+                                  -fx-padding: 0 15;
+                                  -fx-font-size: 14;"/>
+
+                <Button text="Search"
+                        onAction="#search"
+                        prefWidth="100"
+                        prefHeight="42"
+                        style="-fx-background-color: #4C6FFF;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 8;
+                               -fx-cursor: hand;"/>
+
+                <Button text="Clear"
+                        onAction="#clearFilters"
+                        prefWidth="80"
+                        prefHeight="42"
+                        style="-fx-background-color: #E8ECF2;
+                               -fx-text-fill: #172B4D;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 8;
+                               -fx-cursor: hand;"/>
+
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <left>
+
+        <ScrollPane fitToWidth="true"
+                    prefWidth="250"
+                    hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent;">
+
+            <VBox spacing="16"
+                  prefWidth="220"
+                  style="-fx-background-color: white;
+                         -fx-padding: 22;">
+
+                <Label text="FILTERS"
+                       textFill="#172B4D">
+                    <font>
+                        <Font name="System Bold" size="17"/>
+                    </font>
+                </Label>
+
+                <VBox spacing="7">
+
+                    <Label text="Category"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <ComboBox fx:id="categoryCombo"
+                              promptText="All categories"
+                              prefHeight="36"
+                              maxWidth="Infinity"
+                              onAction="#categoryChanged"/>
+
+                </VBox>
+
+
+                <VBox spacing="7">
+
+                    <Label text="Availability"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <ComboBox fx:id="statusCombo"
+                              promptText="All"
+                              prefHeight="36"
+                              maxWidth="Infinity"
+                              onAction="#applyFilters"/>
+
+                </VBox>
+
+                <VBox spacing="7">
+
+                    <Label text="Price range"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <HBox spacing="6">
+
+                        <TextField fx:id="minPriceField"
+                                   promptText="Min"
+                                   prefHeight="35"/>
+
+                        <TextField fx:id="maxPriceField"
+                                   promptText="Max"
+                                   prefHeight="35"/>
+
+                    </HBox>
+
+                </VBox>
+
+
+                <VBox spacing="7">
+
+                    <Label text="Rating"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <HBox spacing="6">
+
+                        <TextField fx:id="minRatingField"
+                                   promptText="Min"
+                                   prefHeight="35"/>
+
+                        <TextField fx:id="maxRatingField"
+                                   promptText="Max"
+                                   prefHeight="35"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <Separator/>
+
+                <Label text="Category Filters"
+                       textFill="#172B4D">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+
+                <VBox fx:id="pcFilters"
+                      spacing="8"
+                      managed="false"
+                      visible="false">
+
+                    <Label text="PC"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <ComboBox fx:id="cpuCombo"
+                              promptText="CPU Type"
+                              prefHeight="35"
+                              maxWidth="Infinity"/>
+
+                    <ComboBox fx:id="ramCombo"
+                              promptText="RAM Capacity"
+                              prefHeight="35"
+                              maxWidth="Infinity"/>
+
+                </VBox>
+
+                <VBox fx:id="storageFilters"
+                      spacing="8"
+                      managed="false"
+                      visible="false">
+
+                    <Label text="Storage"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <HBox spacing="6">
+
+                        <TextField fx:id="minCapacityField"
+                                   promptText="Min"
+                                   prefHeight="35"/>
+
+                        <TextField fx:id="maxCapacityField"
+                                   promptText="Max"
+                                   prefHeight="35"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <VBox fx:id="notebookFilters"
+                      spacing="8"
+                      managed="false"
+                      visible="false">
+
+                    <Label text="Notebook"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <HBox spacing="6">
+
+                        <TextField fx:id="minPagesField"
+                                   promptText="Min pages"
+                                   prefHeight="35"/>
+
+                        <TextField fx:id="maxPagesField"
+                                   promptText="Max pages"
+                                   prefHeight="35"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <VBox fx:id="penFilters"
+                      spacing="8"
+                      managed="false"
+                      visible="false">
+
+                    <Label text="Pen"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <ComboBox fx:id="colorCombo"
+                              promptText="Color"
+                              prefHeight="35"
+                              maxWidth="Infinity"/>
+
+                </VBox>
+
+                <VBox fx:id="carFilters"
+                      spacing="8"
+                      managed="false"
+                      visible="false">
+
+                    <Label text="Car"
+                           textFill="#344563">
+                        <font>
+                            <Font name="System Bold" size="13"/>
+                        </font>
+                    </Label>
+
+                    <ComboBox fx:id="automaticCombo"
+                              promptText="Transmission"
+                              prefHeight="35"
+                              maxWidth="Infinity"/>
+
+                    <HBox spacing="6">
+
+                        <TextField fx:id="minEngineField"
+                                   promptText="Min engine"
+                                   prefHeight="35"/>
+
+                        <TextField fx:id="maxEngineField"
+                                   promptText="Max engine"
+                                   prefHeight="35"/>
+
+                    </HBox>
+
+                </VBox>
+
+
+                <Button text="Apply Filters"
+                        onAction="#applyFilters"
+                        prefHeight="40"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #4C6FFF;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 8;
+                               -fx-cursor: hand;"/>
+
+            </VBox>
+
+        </ScrollPane>
+
+    </left>
+
+    <center>
+
+        <VBox spacing="15"
+              style="-fx-padding: 22 25 10 25;">
+
+            <HBox alignment="CENTER_LEFT">
+
+                <Label fx:id="resultLabel"
+                       text="Products"
+                       textFill="#172B4D">
+                    <font>
+                        <Font name="System Bold" size="17"/>
+                    </font>
+                </Label>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="pageLabel"
+                       text="Page 1"
+                       textFill="#6B778C"/>
+
+            </HBox>
+
+
+            <ScrollPane fitToWidth="true"
+                        fitToHeight="true"
+                        VBox.vgrow="ALWAYS"
+                        hbarPolicy="NEVER"
+                        style="-fx-background-color: transparent;">
+
+                <FlowPane fx:id="productsContainer"
+                          hgap="18"
+                          vgap="18"
+                          prefWrapLength="800"
+                          style="-fx-padding: 5;"/>
+
+            </ScrollPane>
+
+            <HBox alignment="CENTER"
+                  spacing="10">
+
+                <Button fx:id="previousButton"
+                        text="‹ Previous"
+                        onAction="#previousPage"
+                        prefHeight="35"
+                        style="-fx-background-color: #E8ECF2;
+                               -fx-text-fill: #172B4D;
+                               -fx-background-radius: 7;
+                               -fx-cursor: hand;"/>
+
+                <Label fx:id="paginationLabel"
+                       text="1"
+                       minWidth="80"
+                       alignment="CENTER"
+                       textFill="#172B4D">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Label>
+
+                <Button fx:id="nextButton"
+                        text="Next ›"
+                        onAction="#nextPage"
+                        prefHeight="35"
+                        style="-fx-background-color: #E8ECF2;
+                               -fx-text-fill: #172B4D;
+                               -fx-background-radius: 7;
+                               -fx-cursor: hand;"/>
+
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
