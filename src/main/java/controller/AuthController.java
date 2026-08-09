@@ -1,5 +1,6 @@
 package controller;
 
+import controller.SessionManager;
 import model.accounts.Admin;
 import model.accounts.Customer;
 import model.Request;
@@ -8,7 +9,6 @@ import enums.RequestType;
 public class AuthController {
 
     public String signUp(String username, String email, String phoneNumber, String password) {
-
         if (username.isBlank() || email.isBlank() || phoneNumber.isBlank() || password.isBlank()) {
             return "Fill all fields!";
         }
@@ -45,6 +45,69 @@ public class AuthController {
         return "Registration request sent successfully.";
     }
 
+    public String login(String username, String password) {
+        if (username == null || password == null || username.isBlank() || password.isBlank()) {
+            return "Fill all fields!";
+        }
+        if (username.equals("Admin")) {
+            if (password.equals("Admin")) {
+                SessionManager.login(Admin.getInstance());
+                return "Admin logged in";
+            } else {
+                return "Wrong password";
+            }
+        }
+        for (Customer customer : Admin.getInstance().getCustomers()) {
+            if (customer.getUsername().equals(username)) {
+                if (!customer.getPassword().equals(password)) {
+                    return "Wrong password!";
+                }
+                SessionManager.login(customer);
+                return "Successfully logged in";
+            }
+        }
+        return "Username doesn't exist";
+    }
+
+    public String editPersonalInfo(String newUsername, String newEmail, String newPhoneNumber, String newPassword) {
+        Customer currentCustomer = SessionManager.getCurrentCustomer();
+        if (currentCustomer == null) {
+            return "No customer is logged in!";
+        }
+        if (newUsername == null || newUsername.isBlank() || newEmail == null || newEmail.isBlank() || newPhoneNumber == null || newPhoneNumber.isBlank() || newPassword == null || newPassword.isBlank()) {
+            return "Fill all fields!";
+        }
+        if (!newPhoneNumber.matches("^09\\d{9}$")) {
+            return "Invalid phone number!";
+        }
+        if (!newEmail.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            return "Invalid email!";
+        }
+        if (!newPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$")) {
+            return "Weak password!";
+        }
+        for (Customer customer : Admin.getInstance().getCustomers()) {
+            if (customer != currentCustomer && customer.getUsername().equals(newUsername)) {
+                return "Username already exists!";
+            }
+        }
+        for (Customer customer : Admin.getInstance().getCustomers()) {
+            if (customer != currentCustomer && customer.getEmail().equals(newEmail)) {
+                return "Email already exists!";
+            }
+        }
+        for (Customer customer : Admin.getInstance().getCustomers()) {
+            if (customer != currentCustomer && customer.getPhoneNumber().equals(newPhoneNumber)) {
+                return "Phone number already exists!";
+            }
+        }
+        currentCustomer.setUsername(newUsername);
+        currentCustomer.setEmail(newEmail);
+        currentCustomer.setPhoneNumber(newPhoneNumber);
+        currentCustomer.setPassword(newPassword);
+        return "Personal information updated successfully.";
+    }
+
     private boolean usernameExists(String username) {
         for (Customer customer : Admin.getInstance().getCustomers()) {
             if (customer.getUsername().equals(username)) {
@@ -70,69 +133,5 @@ public class AuthController {
             }
         }
         return false;
-    }
-
-    public String login(String username, String password) {
-        if (username.equals("Admin")) {
-            if (password.equals("Admin")) {
-                return "Admin logged in";
-            } else {
-                return "Wrong password";
-            }
-        }
-        if (!usernameExists(username)) {
-            return "Username doesn't exist";
-        }
-        for (Customer customer : Admin.getInstance().getCustomers()) {
-            if (customer.getUsername().equals(username)) {
-                if (!customer.getPassword().equals(password)) {
-                    return "Wrong Password!";
-                }
-            }
-        }
-        return "Successfully logged in";
-    }
-
-    public String editPersonalInfo(String newUsername, String newEmail, String newPhoneNumber, String newPassword) {
-
-        if (newUsername.isBlank() || newEmail.isBlank() || newPhoneNumber.isBlank() || newPassword.isBlank()) {
-            return "Fill all fields!";
-        }
-
-        if (!newPhoneNumber.matches("^09\\d{9}$")) {
-            return "Invalid phone number!";
-        }
-
-        if (!newEmail.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
-            return "Invalid email!";
-        }
-
-        if (!newPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$")) {
-            return "Weak password!";
-        }
-
-        for (Customer customer : Admin.getInstance().getCustomers()) {
-            if (customer.getUsername().equals(newUsername)) {
-                for (Customer c : Admin.getInstance().getCustomers()) {
-
-                    if (c != customer && c.getUsername().equals(newUsername)) {
-                        return "Username already exists!";
-                    }
-
-                    if (c != customer && c.getEmail().equals(newEmail)) {
-                        return "Email already exists!";
-                    }
-
-                    if (c != customer && c.getPhoneNumber().equals(newPhoneNumber)) {
-                        return "Phone number already exists!";
-                    }
-                }
-                customer.setUsername(newUsername);
-                customer.setEmail(newEmail);
-                customer.setPhoneNumber(newPhoneNumber);
-                customer.setPassword(newPassword);
-            }
-        }
-        return "Personal information updated successfully.";
     }
 }
