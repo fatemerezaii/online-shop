@@ -9,49 +9,63 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.SignUpController">
 
     <children>
 
-        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
 
             <VBox alignment="CENTER" maxWidth="360.0" spacing="20.0">
 
                 <Label text="Create Account" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="32.0" />
+                        <Font name="System Bold" size="32.0"/>
                     </font>
                 </Label>
 
                 <Label text="Join our Online Shop" textFill="#B8C6D9">
                     <font>
-                        <Font name="System" size="15.0" />
+                        <Font name="System" size="15.0"/>
                     </font>
                 </Label>
 
                 <VBox alignment="CENTER" maxWidth="300.0" spacing="12.0">
 
-                    <TextField fx:id="usernameField" prefHeight="45.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;" />
+                    <TextField fx:id="usernameField" prefHeight="45.0" prefWidth="300.0" promptText="Username"
+                               style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;"/>
 
-                    <TextField fx:id="emailField" prefHeight="45.0" prefWidth="300.0" promptText="Email" style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;" />
+                    <TextField fx:id="emailField" prefHeight="45.0" prefWidth="300.0" promptText="Email"
+                               style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;"/>
 
-                    <TextField fx:id="phoneNumberField" prefHeight="45.0" prefWidth="300.0" promptText="Phone Number" style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;" />
+                    <TextField fx:id="phoneNumberField" prefHeight="45.0" prefWidth="300.0" promptText="Phone Number"
+                               style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;"/>
 
-                    <PasswordField fx:id="passwordField" prefHeight="45.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: rgba(255,255,255,0.12);                                           -fx-text-fill: #FFFFFF;                                           -fx-prompt-text-fill: #AAB7C8;                                           -fx-font-size: 14px;                                           -fx-background-radius: 10px;                                           -fx-border-color: rgba(255,255,255,0.25);                                           -fx-border-radius: 10px;                                           -fx-border-width: 1px;" />
+                    <PasswordField fx:id="passwordField" prefHeight="45.0" prefWidth="300.0" promptText="Password"
+                                   style="-fx-background-color: rgba(255,255,255,0.12);                                           -fx-text-fill: #FFFFFF;                                           -fx-prompt-text-fill: #AAB7C8;                                           -fx-font-size: 14px;                                           -fx-background-radius: 10px;                                           -fx-border-color: rgba(255,255,255,0.25);                                           -fx-border-radius: 10px;                                           -fx-border-width: 1px;"/>
 
-                    <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUP" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;" text="Sign Up" />
+                    <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUP" prefHeight="48.0"
+                            prefWidth="300.0"
+                            style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;"
+                            text="Sign Up"/>
 
                 </VBox>
                 <Label text="Create your account and start shopping" textFill="#8FA3BA">
                     <font>
-                        <Font name="System" size="13.0" />
+                        <Font name="System" size="13.0"/>
                     </font>
                 </Label>
 
             </VBox>
 
         </StackPane>
-      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="65.0" style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;" text="Back" />
+        <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back"
+                prefHeight="48.0" prefWidth="65.0"
+                style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;"
+                text="Back"/>
 
     </children>
 
