@@ -44,9 +44,7 @@ public class UserMenuController {
     @FXML
     void profile(ActionEvent event) throws IOException {
         Customer customer = SessionManager.getCurrentCustomer();
-        System.out.println("Profile customer from Session = " + customer);
         if (customer == null) {
-            System.out.println("ERROR: No customer is logged in!");
             return;
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/onlineShop/Profile.fxml"));

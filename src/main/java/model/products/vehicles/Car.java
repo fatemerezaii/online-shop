@@ -9,8 +9,8 @@ public class Car extends Vehicles{
     private double engineVolume;
     private boolean isAutomate;
 
-    public Car(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, String companyName, double engineVolume, boolean isAutomate) {
-        super(averageRating, category, comments, cost, name, productId, status, companyName);
+    public Car(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, int inventory, String companyName, double engineVolume, boolean isAutomate) {
+        super(averageRating, category, comments, cost, name, productId, status, inventory,companyName);
         this.engineVolume = engineVolume;
         this.isAutomate = isAutomate;
     }

@@ -32,7 +32,6 @@ public class ProfileController {
     public void setCustomer(Customer customer) {
         this.customer = customer;
         if (customer == null) {
-            System.out.println("ERROR: Customer is null!");
             return;
         }
         usernameText.setText(customer.getUsername());

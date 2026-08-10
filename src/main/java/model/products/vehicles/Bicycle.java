@@ -9,8 +9,8 @@ import java.util.List;
 public class Bicycle extends Vehicles {
     private BicycleType bicycleType;
 
-    public Bicycle(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, String companyName, BicycleType bicycleType) {
-        super(averageRating, category, comments, cost, name, productId, status, companyName);
+    public Bicycle(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status,int inventory, String companyName, BicycleType bicycleType) {
+        super(averageRating, category, comments, cost, name, productId, status, inventory,companyName);
         this.bicycleType = bicycleType;
     }
 

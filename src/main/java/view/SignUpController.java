@@ -26,16 +26,18 @@ public class SignUpController {
     private Button signUpButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private TextField usernameField;
 
     @FXML
     void signUP(ActionEvent event) throws IOException {
         AuthController authController = new AuthController();
         String result = authController.signUp(usernameField.getText(), emailField.getText(), phoneNumberField.getText(), passwordField.getText());
-        if (result.equals("Registration request sent successfully.")){
+        if (result.equals("Registration request sent successfully.")) {
             SceneManager.switchScene(event, "UserMenu.fxml");
-        }
-        else{
+        } else {
             showAlert("Failed", result);
         }
     }

@@ -12,7 +12,6 @@
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpController">
 
     <children>
-      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="65.0" style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;" text="Back" />
 
         <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
@@ -52,6 +51,7 @@
             </VBox>
 
         </StackPane>
+      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="65.0" style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;" text="Back" />
 
     </children>
 

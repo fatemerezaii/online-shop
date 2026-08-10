@@ -9,8 +9,8 @@ import java.util.List;
 public class Stationery extends Product {
     private String country;
 
-    public Stationery(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, String country) {
-        super(averageRating, category, comments, cost, name, productId, status);
+    public Stationery(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, int inventory,String country) {
+        super(averageRating, category, comments, cost, name, productId, status, inventory);
         this.country = country;
     }
 

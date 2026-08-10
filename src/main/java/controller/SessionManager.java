@@ -9,7 +9,6 @@ public class SessionManager {
 
     public static void login(Account user) {
         currentUser = user;
-        System.out.println("Session login: " + currentUser);
     }
 
     public static void logout() {
@@ -21,7 +20,6 @@ public class SessionManager {
     }
 
     public static Customer getCurrentCustomer() {
-        System.out.println("Current user: " + currentUser);
         if (currentUser instanceof Customer) {
             return (Customer) currentUser;
         }

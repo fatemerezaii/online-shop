@@ -10,8 +10,8 @@ public class ElectronicProduct extends Product {
     private double weight;
     private double dimensions;
 
-    public ElectronicProduct(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, double dimensions, double weight) {
-        super(averageRating, category, comments, cost, name, productId, status);
+    public ElectronicProduct(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, int inventory, double dimensions, double weight) {
+        super(averageRating, category, comments, cost, name, productId, status, inventory);
         this.dimensions = dimensions;
         this.weight = weight;
     }

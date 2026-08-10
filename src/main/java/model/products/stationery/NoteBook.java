@@ -9,8 +9,8 @@ public class NoteBook extends Stationery{
     private int pages;
     private String paperType;
 
-    public NoteBook(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, String country, int pages, String paperType) {
-        super(averageRating, category, comments, cost, name, productId, status, country);
+    public NoteBook(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, int inventory,String country, int pages, String paperType) {
+        super(averageRating, category, comments, cost, name, productId, status,inventory, country);
         this.pages = pages;
         this.paperType = paperType;
     }

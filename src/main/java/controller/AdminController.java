@@ -93,8 +93,8 @@ public class AdminController {
 
     private String addCar(String[] parts) {
 
-        if (parts.length != 10) {
-            return "Invalid Car command!\n" + "Format:\n" + "Add Car <category> <cost> <name> <id> <status> " + "<companyName> <engineVolume> <isAutomate>";
+        if (parts.length != 11) {
+            return "Invalid Car command!\n" + "Format:\n" + "Add Car <category> <cost> <name> <id> <status> <inventory> " + "<companyName> <engineVolume> <isAutomate>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -102,13 +102,14 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        String companyName = parts[7];
-        double engineVolume = Double.parseDouble(parts[8]);
-        boolean automate = parseBoolean(parts[9]);
+        int inventory = Integer.parseInt(parts[7]);
+        String companyName = parts[8];
+        double engineVolume = Double.parseDouble(parts[9]);
+        boolean automate = parseBoolean(parts[10]);
 
         validateBasicFields(cost, name, id);
 
-        Car car = new Car(0, category, new ArrayList<>(), cost, name, id, status, companyName, engineVolume, automate);
+        Car car = new Car(0, category, new ArrayList<>(), cost, name, id, status, inventory, companyName, engineVolume, automate);
         addToProducts(car);
 
         return "Car added successfully.";
@@ -117,8 +118,8 @@ public class AdminController {
 
     private String addBicycle(String[] parts) {
 
-        if (parts.length != 9) {
-            return "Invalid Bicycle command!\n" + "Format:\n" + "Add Bicycle <category> <cost> <name> <id> <status> " + "<companyName> <bicycleType>";
+        if (parts.length != 10) {
+            return "Invalid Bicycle command!\n" + "Format:\n" + "Add Bicycle <category> <cost> <name> <id> <status><inventory> " + "<companyName> <bicycleType>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -126,11 +127,12 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        String companyName = parts[7];
-        BicycleType bicycleType = parseBicycleType(parts[8]);
+        int inventory = Integer.parseInt(parts[7]);
+        String companyName = parts[8];
+        BicycleType bicycleType = parseBicycleType(parts[9]);
         validateBasicFields(cost, name, id);
 
-        Bicycle bicycle = new Bicycle(0, category, new ArrayList<>(), cost, name, id, status, companyName, bicycleType);
+        Bicycle bicycle = new Bicycle(0, category, new ArrayList<>(), cost, name, id, status, inventory, companyName, bicycleType);
         addToProducts(bicycle);
 
         return "Bicycle added successfully.";
@@ -139,8 +141,8 @@ public class AdminController {
 
     private String addPC(String[] parts) {
 
-        if (parts.length != 11) {
-            return "Invalid PC command!\n" + "Format:\n" + "Add PC <category> <cost> <name> <id> <status> " + "<dimensions> <weight> <CPUType> <RAMCapacity>";
+        if (parts.length != 12) {
+            return "Invalid PC command!\n" + "Format:\n" + "Add PC <category> <cost> <name> <id> <status><inventory> " + "<dimensions> <weight> <CPUType> <RAMCapacity>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -148,12 +150,13 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        double dimensions = Double.parseDouble(parts[7]);
-        double weight = Double.parseDouble(parts[8]);
-        String cpuType = parts[9];
-        String ramCapacity = parts[10];
+        int inventory = Integer.parseInt(parts[7]);
+        double dimensions = Double.parseDouble(parts[8]);
+        double weight = Double.parseDouble(parts[9]);
+        String cpuType = parts[10];
+        String ramCapacity = parts[11];
         validateBasicFields(cost, name, id);
-        PC pc = new PC(0, category, new ArrayList<>(), cost, name, id, status, dimensions, weight, cpuType, ramCapacity);
+        PC pc = new PC(0, category, new ArrayList<>(), cost, name, id, status, inventory, dimensions, weight, cpuType, ramCapacity);
         addToProducts(pc);
 
         return "PC added successfully.";
@@ -162,8 +165,8 @@ public class AdminController {
 
     private String addMemory(String[] parts) {
 
-        if (parts.length != 11) {
-            return "Invalid Memory command!\n" + "Format:\n" + "Add Memory <category> <cost> <name> <id> <status> " + "<dimensions> <weight> <capacity> <USBVersion>";
+        if (parts.length != 12) {
+            return "Invalid Memory command!\n" + "Format:\n" + "Add Memory <category> <cost> <name> <id> <status> <inventory>" + "<dimensions> <weight> <capacity> <USBVersion>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -171,13 +174,14 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        double dimensions = Double.parseDouble(parts[7]);
-        double weight = Double.parseDouble(parts[8]);
-        double capacity = Double.parseDouble(parts[9]);
-        String usbVersion = parts[10];
+        int inventory = Integer.parseInt(parts[7]);
+        double dimensions = Double.parseDouble(parts[8]);
+        double weight = Double.parseDouble(parts[9]);
+        double capacity = Double.parseDouble(parts[10]);
+        String usbVersion = parts[11];
         validateBasicFields(cost, name, id);
 
-        Memory memory = new Memory(0, category, new ArrayList<>(), cost, name, id, status, dimensions, weight, capacity, usbVersion);
+        Memory memory = new Memory(0, category, new ArrayList<>(), cost, name, id, status, inventory,  dimensions, weight, capacity, usbVersion);
         addToProducts(memory);
 
         return "Memory added successfully.";
@@ -186,8 +190,8 @@ public class AdminController {
 
     private String addSSD(String[] parts) {
 
-        if (parts.length != 12) {
-            return "Invalid SSD command!\n" + "Format:\n" + "Add SSD <category> <cost> <name> <id> <status> " + "<dimensions> <weight> <capacity> " + "<readingSpeed> <writingSpeed>";
+        if (parts.length != 13) {
+            return "Invalid SSD command!\n" + "Format:\n" + "Add SSD <category> <cost> <name> <id> <status> <inventory>" + "<dimensions> <weight> <capacity> " + "<readingSpeed> <writingSpeed>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -195,14 +199,15 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        double dimensions = Double.parseDouble(parts[7]);
-        double weight = Double.parseDouble(parts[8]);
-        double capacity = Double.parseDouble(parts[9]);
-        String readingSpeed = parts[10];
-        String writingSpeed = parts[11];
+        int inventory = Integer.parseInt(parts[7]);
+        double dimensions = Double.parseDouble(parts[8]);
+        double weight = Double.parseDouble(parts[9]);
+        double capacity = Double.parseDouble(parts[10]);
+        String readingSpeed = parts[11];
+        String writingSpeed = parts[12];
         validateBasicFields(cost, name, id);
 
-        SSD ssd = new SSD(0, category, new ArrayList<>(), cost, name, id, status, dimensions, weight, capacity, readingSpeed, writingSpeed);
+        SSD ssd = new SSD(0, category, new ArrayList<>(), cost, name, id, status, inventory,  dimensions, weight, capacity, readingSpeed, writingSpeed);
         addToProducts(ssd);
 
         return "SSD added successfully.";
@@ -211,8 +216,8 @@ public class AdminController {
 
     private String addPen(String[] parts) {
 
-        if (parts.length != 9) {
-            return "Invalid Pen command!\n" + "Format:\n" + "Add Pen <category> <cost> <name> <id> " + "<status> <country> <color>";
+        if (parts.length != 10) {
+            return "Invalid Pen command!\n" + "Format:\n" + "Add Pen <category> <cost> <name> <id> " + "<status><inventory> <country> <color>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -220,11 +225,12 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        String country = parts[7];
-        String color = parts[8];
+        int inventory = Integer.parseInt(parts[7]);
+        String country = parts[8];
+        String color = parts[9];
         validateBasicFields(cost, name, id);
 
-        Pen pen = new Pen(0, category, new ArrayList<>(), cost, name, id, status, country, color);
+        Pen pen = new Pen(0, category, new ArrayList<>(), cost, name, id, status, inventory,  country, color);
         addToProducts(pen);
 
         return "Pen added successfully.";
@@ -233,8 +239,8 @@ public class AdminController {
 
     private String addPencil(String[] parts) {
 
-        if (parts.length != 9) {
-            return "Invalid Pencil command!\n" + "Format:\n" + "Add Pencil <category> <cost> <name> " + "<id> <status> <country> <pencilType>";
+        if (parts.length != 10) {
+            return "Invalid Pencil command!\n" + "Format:\n" + "Add Pencil <category> <cost> <name> " + "<id> <status> <inventory><country> <pencilType>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -242,11 +248,12 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        String country = parts[7];
-        PencilType pencilType = parsePencilType(parts[8]);
+        int inventory = Integer.parseInt(parts[7]);
+        String country = parts[8];
+        PencilType pencilType = parsePencilType(parts[9]);
         validateBasicFields(cost, name, id);
 
-        Pencil pencil = new Pencil(0, category, new ArrayList<>(), cost, name, id, status, country, pencilType);
+        Pencil pencil = new Pencil(0, category, new ArrayList<>(), cost, name, id, status, inventory,  country, pencilType);
         addToProducts(pencil);
 
         return "Pencil added successfully.";
@@ -255,8 +262,8 @@ public class AdminController {
 
     private String addNoteBook(String[] parts) {
 
-        if (parts.length != 10) {
-            return "Invalid NoteBook command!\n" + "Format:\n" + "Add NoteBook <category> <cost> <name> " + "<id> <status> <country> <pages> <paperType>";
+        if (parts.length != 11) {
+            return "Invalid NoteBook command!\n" + "Format:\n" + "Add NoteBook <category> <cost> <name> " + "<id> <status> <inventory><country> <pages> <paperType>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -264,12 +271,13 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        String country = parts[7];
-        int pages = Integer.parseInt(parts[8]);
-        String paperType = parts[9];
+        int inventory = Integer.parseInt(parts[7]);
+        String country = parts[8];
+        int pages = Integer.parseInt(parts[9]);
+        String paperType = parts[10];
         validateBasicFields(cost, name, id);
 
-        NoteBook noteBook = new NoteBook(0, category, new ArrayList<>(), cost, name, id, status, country, pages, paperType);
+        NoteBook noteBook = new NoteBook(0, category, new ArrayList<>(), cost, name, id, status, inventory,  country, pages, paperType);
         addToProducts(noteBook);
 
         return "NoteBook added successfully.";
@@ -278,8 +286,8 @@ public class AdminController {
 
     private String addEdible(String[] parts) {
 
-        if (parts.length != 9) {
-            return "Invalid Edible command!\n" + "Format:\n" + "Add Edible <category> <cost> <name> " + "<id> <status> <expiry> <productionDate>";
+        if (parts.length != 10) {
+            return "Invalid Edible command!\n" + "Format:\n" + "Add Edible <category> <cost> <name> " + "<id> <status> <inventory><expiry> <productionDate>";
         }
 
         Category category = parseCategory(parts[2]);
@@ -287,11 +295,12 @@ public class AdminController {
         String name = parts[4];
         int id = Integer.parseInt(parts[5]);
         String status = parts[6];
-        String expiry = parts[7];
-        String productionDate = parts[8];
+        int inventory = Integer.parseInt(parts[7]);
+        String expiry = parts[8];
+        String productionDate = parts[9];
         validateBasicFields(cost, name, id);
 
-        Edible edible = new Edible(0, category, new ArrayList<>(), cost, name, id, status, expiry, productionDate);
+        Edible edible = new Edible(0, category, new ArrayList<>(), cost, name, id, status, inventory, expiry, productionDate);
         addToProducts(edible);
 
         return "Edible added successfully.";
@@ -359,31 +368,31 @@ public class AdminController {
                 ===== ADMIN COMMANDS =====
 
                 Add Car:
-                Add Car <category> <cost> <name> <id> <status> <companyName> <engineVolume> <isAutomate>
+                Add Car <category> <cost> <name> <id> <status> <inventory> <companyName> <engineVolume> <isAutomate>
 
                 Add Bicycle:
-                Add Bicycle <category> <cost> <name> <id> <status> <companyName> <bicycleType>
+                Add Bicycle <category> <cost> <name> <id> <status> <inventory> <companyName> <bicycleType>
 
                 Add PC:
-                Add PC <category> <cost> <name> <id> <status> <dimensions> <weight> <CPUType> <RAMCapacity>
+                Add PC <category> <cost> <name> <id> <status> <inventory> <dimensions> <weight> <CPUType> <RAMCapacity>
 
                 Add Memory:
-                Add Memory <category> <cost> <name> <id> <status> <dimensions> <weight> <capacity> <USBVersion>
+                Add Memory <category> <cost> <name> <id> <status> <inventory> <dimensions> <weight> <capacity> <USBVersion>
 
                 Add SSD:
-                Add SSD <category> <cost> <name> <id> <status> <dimensions> <weight> <capacity> <readingSpeed> <writingSpeed>
+                Add SSD <category> <cost> <name> <id> <status> <inventory> <dimensions> <weight> <capacity> <readingSpeed> <writingSpeed>
 
                 Add Pen:
-                Add Pen <category> <cost> <name> <id> <status> <country> <color>
+                Add Pen <category> <cost> <name> <id> <status> <inventory> <country> <color>
 
                 Add Pencil:
-                Add Pencil <category> <cost> <name> <id> <status> <country> <pencilType>
+                Add Pencil <category> <cost> <name> <id> <status> <inventory> <country> <pencilType>
 
                 Add NoteBook:
-                Add NoteBook <category> <cost> <name> <id> <status> <country> <pages> <paperType>
+                Add NoteBook <category> <cost> <name> <id> <status> <inventory> <country> <pages> <paperType>
 
                 Add Edible:
-                Add Edible <category> <cost> <name> <id> <status> <expiry> <productionDate>
+                Add Edible <category> <cost> <name> <id> <status> <inventory> <expiry> <productionDate>
 
                 =========================
                 """;

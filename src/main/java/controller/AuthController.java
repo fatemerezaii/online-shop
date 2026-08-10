@@ -1,10 +1,9 @@
 package controller;
 
-import controller.SessionManager;
+import enums.RequestType;
+import model.Request;
 import model.accounts.Admin;
 import model.accounts.Customer;
-import model.Request;
-import enums.RequestType;
 
 public class AuthController {
 
@@ -38,33 +37,29 @@ public class AuthController {
         }
         Customer customer = new Customer(email, password, phoneNumber, username);
         Request request = new Request(customer, RequestType.REGISTER, customer);
-        Admin admin = Admin.getInstance();
-        admin.getRequests().add(request);
-        login(username, password);
-        return "Registration request sent successfully.";
+        Admin.getInstance().getRequests().add(request);
+        return "Registration request sent successfully. " + "Please wait for admin approval.";
     }
 
     public String login(String username, String password) {
-        if (username == null || password == null || username.isBlank() || password.isBlank()) {
+        if (username.isBlank() || password.isBlank()) {
             return "Fill all fields!";
         }
-        if (username.equals("Admin")) {
-            if (password.equals("Admin")) {
+
+        if (username.equals("admin")) {
+            if (password.equals("admin")) {
                 SessionManager.login(Admin.getInstance());
                 return "Admin logged in";
-            } else {
-                return "Wrong password";
             }
+            return "Wrong password!";
         }
+
         for (Customer customer : Admin.getInstance().getCustomers()) {
             if (customer.getUsername().equals(username)) {
                 if (!customer.getPassword().equals(password)) {
                     return "Wrong password!";
                 }
-                System.out.println("Customer found: " + customer);
-                System.out.println("Customer username: " + customer.getUsername());
                 SessionManager.login(customer);
-                System.out.println("Session after login: " + SessionManager.getCurrentCustomer());
                 return "Successfully logged in";
             }
         }
@@ -76,7 +71,7 @@ public class AuthController {
         if (currentCustomer == null) {
             return "No customer is logged in!";
         }
-        if (newEmail == null || newEmail.isBlank() || newPhoneNumber == null || newPhoneNumber.isBlank() || newPassword == null || newPassword.isBlank()) {
+        if (newEmail.isBlank() || newPhoneNumber.isBlank() || newPassword.isBlank()) {
             return "Fill all fields!";
         }
         if (!newPhoneNumber.matches("^09\\d{9}$")) {

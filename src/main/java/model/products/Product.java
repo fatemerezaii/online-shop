@@ -13,8 +13,9 @@ public class Product {
     private double  averageRating;
     private Category category;
     private List<Comment> comments;
+    private int inventory;
 
-    public Product(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status) {
+    public Product(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, int inventory) {
         this.averageRating = averageRating;
         this.category = category;
         this.comments = comments;
@@ -22,6 +23,7 @@ public class Product {
         this.name = name;
         this.productId = productId;
         this.status = status;
+        this.inventory = inventory;
     }
 
     public double getAverageRating() {
@@ -78,5 +80,13 @@ public class Product {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
     }
 }

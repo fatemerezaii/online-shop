@@ -9,8 +9,8 @@ import java.util.List;
 public class Vehicles extends Product {
     private String companyName;
 
-    public Vehicles(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, String companyName) {
-        super(averageRating, category, comments, cost, name, productId, status);
+    public Vehicles(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status,int inventory, String companyName) {
+        super(averageRating, category, comments, cost, name, productId, status, inventory);
         this.companyName = companyName;
     }
 

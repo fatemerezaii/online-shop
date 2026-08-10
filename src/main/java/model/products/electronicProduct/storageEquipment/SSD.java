@@ -9,8 +9,8 @@ public class SSD extends StorageEquipment{
     private String readingSpeed;
     private String writingSpeed;
 
-    public SSD(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, double dimensions, double weight, double capacity, String readingSpeed, String writingSpeed) {
-        super(averageRating, category, comments, cost, name, productId, status, dimensions, weight, capacity);
+    public SSD(double averageRating, Category category, List<Comment> comments, double cost, String name, int productId, String status, int inventory, double dimensions, double weight, double capacity, String readingSpeed, String writingSpeed) {
+        super(averageRating, category, comments, cost, name, productId, status, inventory, dimensions, weight, capacity);
         this.readingSpeed = readingSpeed;
         this.writingSpeed = writingSpeed;
     }

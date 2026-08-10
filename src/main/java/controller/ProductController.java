@@ -237,4 +237,82 @@ public class ProductController {
 
         return (int) Math.ceil((double) products.size() / productsPerPage);
     }
+
+    public String addProduct(Product product) {
+
+        if (product == null) {
+            return "Product cannot be null!";
+        }
+
+        for (Product p : products) {
+            if (p.getProductId() == product.getProductId()) {
+                return "Product ID already exists!";
+            }
+        }
+
+        if (product.getInventory() < 0) {
+            return "Inventory cannot be negative!";
+        }
+
+        products.add(product);
+
+        return "Product added successfully.";
+    }
+
+    public String removeProduct(int productId) {
+
+        Product product = findProductById(productId);
+
+        if (product == null) {
+            return "Product not found!";
+        }
+
+        products.remove(product);
+
+        return "Product removed successfully.";
+    }
+
+    public String editProduct(int productId, String newName, double newCost, String newStatus, int newInventory) {
+
+        Product product = findProductById(productId);
+
+        if (product == null) {
+            return "Product not found!";
+        }
+
+        if (newName == null || newName.isBlank()) {
+            return "Product name cannot be empty!";
+        }
+
+        if (newCost < 0) {
+            return "Price cannot be negative!";
+        }
+
+        if (newInventory < 0) {
+            return "Inventory cannot be negative!";
+        }
+
+        if (newStatus == null || newStatus.isBlank()) {
+            return "Status cannot be empty!";
+        }
+
+        product.setName(newName);
+        product.setCost(newCost);
+        product.setStatus(newStatus);
+        product.setInventory(newInventory);
+
+        return "Product updated successfully.";
+    }
+
+    private Product findProductById(int productId) {
+
+        for (Product product : products) {
+
+            if (product.getProductId() == productId) {
+                return product;
+            }
+        }
+
+        return null;
+    }
 }

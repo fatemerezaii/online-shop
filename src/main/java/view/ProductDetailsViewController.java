@@ -8,7 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import model.Comment;
 import model.products.Product;
+import model.products.Edible;
 import model.products.electronicProduct.PC;
 import model.products.electronicProduct.storageEquipment.StorageEquipment;
 import model.products.stationery.NoteBook;
@@ -17,7 +20,7 @@ import model.products.stationery.Pencil;
 import model.products.vehicles.Bicycle;
 import model.products.vehicles.Car;
 import model.products.vehicles.Vehicles;
-import model.products.Edible;
+import enums.CommentStatus;
 
 import java.io.IOException;
 
@@ -25,7 +28,9 @@ public class ProductDetailsViewController {
 
     private Product product;
 
-    private final controller.ProductDetailsController productController = new controller.ProductDetailsController();
+    private final controller.ProductDetailsController productController =
+            new controller.ProductDetailsController();
+
 
     @FXML
     private Label nameLabel;
@@ -46,6 +51,12 @@ public class ProductDetailsViewController {
     private Label detailsLabel;
 
     @FXML
+    private Label inventoryLabel;
+
+    @FXML
+    private TextField quantityField;
+
+    @FXML
     private TextField ratingField;
 
     @FXML
@@ -60,10 +71,17 @@ public class ProductDetailsViewController {
     @FXML
     private Button rateButton;
 
+    @FXML
+    private Button viewCartButton;
+
+    @FXML
+    private VBox commentsContainer;
+
 
     public void setProduct(Product product) {
         this.product = product;
         showProduct();
+        showComments();
     }
 
 
@@ -74,6 +92,7 @@ public class ProductDetailsViewController {
         nameLabel.setText(product.getName());
         priceLabel.setText(String.valueOf(product.getCost()));
         statusLabel.setText(product.getStatus());
+        inventoryLabel.setText(String.valueOf(product.getInventory()));
         ratingLabel.setText(String.format("%.2f", product.getAverageRating()));
         categoryLabel.setText(product.getCategory().toString());
         showSpecificDetails();
@@ -130,29 +149,92 @@ public class ProductDetailsViewController {
         detailsLabel.setText(details.toString());
     }
 
+    private void showComments() {
+        commentsContainer.getChildren().clear();
+        if (product == null) {
+            return;
+        }
+        if (product.getComments() == null || product.getComments().isEmpty()) {
+            Label emptyLabel = new Label("No approved comments yet.");
+            emptyLabel.setTextFill(javafx.scene.paint.Color.web("#B8C6D9"));
+            commentsContainer.getChildren().add(emptyLabel);
+            return;
+        }
+        boolean hasApprovedComment = false;
+        for (Comment comment : product.getComments()) {
+            if (comment == null) {
+                continue;
+            }
+            if (comment.getStatus() != CommentStatus.CONFIRMED) {
+                continue;
+            }
+            hasApprovedComment = true;
+            VBox commentBox = new VBox(5);
+            commentBox.setMaxWidth(400);
+            commentBox.setStyle("-fx-background-color: rgba(255,255,255,0.08);" + "-fx-background-radius: 10px;" + "-fx-padding: 12px;" + "-fx-border-color: rgba(255,255,255,0.15);" + "-fx-border-radius: 10px;");
+            Label usernameLabel = new Label();
+            usernameLabel.setTextFill(javafx.scene.paint.Color.WHITE);
+            usernameLabel.setStyle("-fx-font-weight: bold;" + "-fx-font-size: 14px;");
+            if (comment.getUser() != null) {
+                usernameLabel.setText(comment.getUser().getUsername());
+            } else {
+                usernameLabel.setText("Customer");
+            }
+            Label commentLabel = new Label(comment.getText());
+            commentLabel.setTextFill(javafx.scene.paint.Color.web("#B8C6D9"));
+            commentLabel.setWrapText(true);
+            commentLabel.setMaxWidth(370);
+            commentBox.getChildren().addAll(usernameLabel, commentLabel);
+            commentsContainer.getChildren().add(commentBox);
+        }
+
+
+        if (!hasApprovedComment) {
+            Label emptyLabel = new Label("No approved comments yet.");
+            emptyLabel.setTextFill(javafx.scene.paint.Color.web("#B8C6D9"));
+            commentsContainer.getChildren().add(emptyLabel);
+        }
+    }
 
     @FXML
     private void addToCart(ActionEvent event) {
-        String result = productController.addToCart(product);
-        showAlert(result);
-    }
 
+        String quantityText = quantityField.getText().trim();
+        if (quantityText.isBlank()) {
+            showAlert("Please enter the quantity.");
+            return;
+        }
+
+        try {
+            int quantity = Integer.parseInt(quantityText);
+            if (quantity <= 0) {
+                showAlert("Quantity must be greater than zero.");
+                return;
+            }
+            String result = productController.addToCart(product, quantity);
+            showAlert(result);
+            if (result.contains("added to cart successfully")) {
+                quantityField.clear();
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Quantity must be a valid number.");
+        }
+    }
 
     @FXML
     private void addComment(ActionEvent event) {
         String text = commentArea.getText();
         String result = productController.addComment(product, text);
         showAlert(result);
-        if (result.equals("Comment submitted successfully.")) {
+        if (result.contains("Comment submitted successfully")) {
             commentArea.clear();
         }
     }
 
-
     @FXML
     private void rateProduct(ActionEvent event) {
         String text = ratingField.getText();
-        if (text == null || text.isBlank()) {
+        if (text.isBlank()) {
             showAlert("Please enter a rating.");
             return;
         }
@@ -169,6 +251,14 @@ public class ProductDetailsViewController {
         }
     }
 
+    @FXML
+    private void viewCart(ActionEvent event) {
+        try {
+            SceneManager.switchScene(event, "Cart.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void back(ActionEvent event) {
@@ -178,7 +268,6 @@ public class ProductDetailsViewController {
             e.printStackTrace();
         }
     }
-
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

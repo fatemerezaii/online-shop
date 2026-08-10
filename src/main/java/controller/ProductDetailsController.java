@@ -17,11 +17,23 @@ public class ProductDetailsController {
 
     private boolean hasBought(Customer customer, Product product) {
 
+        if (customer == null || product == null) {
+            return false;
+        }
+
+        if (customer.getFactors() == null) {
+            return false;
+        }
+
         for (Factor factor : customer.getFactors()) {
+
+            if (factor == null || factor.getBoughtProducts() == null) {
+                continue;
+            }
 
             for (Product boughtProduct : factor.getBoughtProducts()) {
 
-                if (boughtProduct.getProductId() == product.getProductId()) {
+                if (boughtProduct != null && boughtProduct.getProductId() == product.getProductId()) {
                     return true;
                 }
             }
@@ -30,7 +42,7 @@ public class ProductDetailsController {
         return false;
     }
 
-    public String addToCart(Product product) {
+    public String addToCart(Product product, int quantity) {
 
         Customer customer = SessionManager.getCurrentCustomer();
 
@@ -42,13 +54,39 @@ public class ProductDetailsController {
             return "Product not found!";
         }
 
-        if (customer.getShoppingCart().contains(product)) {
-            return "Product is already in your cart!";
+        if (quantity <= 0) {
+            return "Quantity must be greater than zero!";
         }
 
-        customer.getShoppingCart().add(product);
+        if (product.getInventory() <= 0) {
+            return "Product is out of stock!";
+        }
 
-        return "Product added to cart successfully.";
+        int currentQuantity = 0;
+
+        if (customer.getShoppingCart() != null) {
+
+            for (Product p : customer.getShoppingCart()) {
+
+                if (p != null && p.getProductId() == product.getProductId()) {
+                    currentQuantity++;
+                }
+            }
+        }
+
+        if (currentQuantity + quantity > product.getInventory()) {
+            return "Not enough products in stock!";
+        }
+
+        if (customer.getShoppingCart() == null) {
+            customer.setShoppingCart(new ArrayList<>());
+        }
+
+        for (int i = 0; i < quantity; i++) {
+            customer.getShoppingCart().add(product);
+        }
+
+        return quantity + " product(s) added to cart successfully.";
     }
 
     public String addComment(Product product, String text) {
@@ -67,8 +105,11 @@ public class ProductDetailsController {
             return "Comment cannot be empty!";
         }
 
-        boolean hasBought = hasBought(customer, product);
-        Comment comment = new Comment(hasBought, product.getProductId(), CommentStatus.WAITING, text, customer);
+        if (!hasBought(customer, product)) {
+            return "You must buy this product before commenting!";
+        }
+
+        Comment comment = new Comment(true, product.getProductId(), CommentStatus.WAITING, text, customer);
         Request request = new Request(customer, RequestType.COMMENT, comment);
         Admin.getInstance().getRequests().add(request);
 
@@ -87,15 +128,23 @@ public class ProductDetailsController {
             return "Product not found!";
         }
 
+        if (!hasBought(customer, product)) {
+            return "You must buy this product before rating!";
+        }
+
         if (rating < 0 || rating > 5) {
             return "Rating must be between 0 and 5!";
         }
 
         List<Rate> rates = Admin.getInstance().getRates();
 
+        if (rates == null) {
+            return "Rating system is not available!";
+        }
+
         for (Rate rate : rates) {
 
-            if (rate.getProduct() == product && rate.getUser() == customer) {
+            if (rate.getProduct() != null && rate.getUser() != null && rate.getProduct().getProductId() == product.getProductId() && rate.getUser() == customer) {
 
                 rate.setScore(rating);
                 updateAverageRating(product);
@@ -115,12 +164,19 @@ public class ProductDetailsController {
 
         List<Rate> rates = Admin.getInstance().getRates();
 
+        if (rates == null || product == null) {
+            return;
+        }
         double sum = 0;
         int count = 0;
 
         for (Rate rate : rates) {
 
-            if (rate.getProduct() == product) {
+            if (rate == null || rate.getProduct() == null) {
+                continue;
+            }
+
+            if (rate.getProduct().getProductId() == product.getProductId()) {
                 sum += rate.getScore();
                 count++;
             }
@@ -128,6 +184,8 @@ public class ProductDetailsController {
 
         if (count > 0) {
             product.setAverageRating(sum / count);
+        } else {
+            product.setAverageRating(0);
         }
     }
 }

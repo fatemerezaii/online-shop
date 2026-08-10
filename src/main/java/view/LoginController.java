@@ -32,7 +32,6 @@ public class LoginController {
         String result = authController.login(usernameField.getText(), passwordField.getText());
         if (result.equals("Successfully logged in")) {
             Customer customer = SessionManager.getCurrentCustomer();
-            System.out.println("LOGIN CUSTOMER = " + customer);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/onlineShop/UserMenu.fxml"));
             Parent root = loader.load();
             SceneManager.switchScene(event, root);
