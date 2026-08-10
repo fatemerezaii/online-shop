@@ -29,12 +29,9 @@ public class EditController {
     private TextField phoneNumberField;
 
     @FXML
-    private TextField usernameField;
-
-    @FXML
     void edit(ActionEvent event) {
         AuthController authController = new AuthController();
-        String result = authController.editPersonalInfo(usernameField.getText(), emailField.getText(), phoneNumberField.getText(), passwordField.getText());
+        String result = authController.editPersonalInfo(emailField.getText(), phoneNumberField.getText(), passwordField.getText());
         if (result.equals("Personal information updated successfully.")){
             showAlert("Success", result);
         } else{

@@ -139,7 +139,7 @@ public class AdminController {
 
     private String addPC(String[] parts) {
 
-        if (parts.length != 10) {
+        if (parts.length != 11) {
             return "Invalid PC command!\n" + "Format:\n" + "Add PC <category> <cost> <name> <id> <status> " + "<dimensions> <weight> <CPUType> <RAMCapacity>";
         }
 
@@ -151,11 +151,6 @@ public class AdminController {
         double dimensions = Double.parseDouble(parts[7]);
         double weight = Double.parseDouble(parts[8]);
         String cpuType = parts[9];
-
-        if (parts.length != 11) {
-            return "Invalid PC command!\n" + "Format:\n" + "Add PC <category> <cost> <name> <id> <status> " + "<dimensions> <weight> <CPUType> <RAMCapacity>";
-        }
-
         String ramCapacity = parts[10];
         validateBasicFields(cost, name, id);
         PC pc = new PC(0, category, new ArrayList<>(), cost, name, id, status, dimensions, weight, cpuType, ramCapacity);

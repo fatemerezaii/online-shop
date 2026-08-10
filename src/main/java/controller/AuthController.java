@@ -37,9 +37,8 @@ public class AuthController {
             return "Phone number already exists!";
         }
         Customer customer = new Customer(email, password, phoneNumber, username);
-        Admin admin = Admin.getInstance();
-        admin.getCustomers().add(customer);
         Request request = new Request(customer, RequestType.REGISTER, customer);
+        Admin admin = Admin.getInstance();
         admin.getRequests().add(request);
         login(username, password);
         return "Registration request sent successfully.";
@@ -72,12 +71,12 @@ public class AuthController {
         return "Username doesn't exist";
     }
 
-    public String editPersonalInfo(String newUsername, String newEmail, String newPhoneNumber, String newPassword) {
+    public String editPersonalInfo(String newEmail, String newPhoneNumber, String newPassword) {
         Customer currentCustomer = SessionManager.getCurrentCustomer();
         if (currentCustomer == null) {
             return "No customer is logged in!";
         }
-        if (newUsername == null || newUsername.isBlank() || newEmail == null || newEmail.isBlank() || newPhoneNumber == null || newPhoneNumber.isBlank() || newPassword == null || newPassword.isBlank()) {
+        if (newEmail == null || newEmail.isBlank() || newPhoneNumber == null || newPhoneNumber.isBlank() || newPassword == null || newPassword.isBlank()) {
             return "Fill all fields!";
         }
         if (!newPhoneNumber.matches("^09\\d{9}$")) {
@@ -90,11 +89,6 @@ public class AuthController {
             return "Weak password!";
         }
         for (Customer customer : Admin.getInstance().getCustomers()) {
-            if (customer != currentCustomer && customer.getUsername().equals(newUsername)) {
-                return "Username already exists!";
-            }
-        }
-        for (Customer customer : Admin.getInstance().getCustomers()) {
             if (customer != currentCustomer && customer.getEmail().equals(newEmail)) {
                 return "Email already exists!";
             }
@@ -104,7 +98,6 @@ public class AuthController {
                 return "Phone number already exists!";
             }
         }
-        currentCustomer.setUsername(newUsername);
         currentCustomer.setEmail(newEmail);
         currentCustomer.setPhoneNumber(newPhoneNumber);
         currentCustomer.setPassword(newPassword);

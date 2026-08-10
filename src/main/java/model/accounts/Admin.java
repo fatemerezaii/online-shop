@@ -2,6 +2,7 @@ package model.accounts;
 
 import model.products.Product;
 import model.Request;
+import model.Rate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +14,24 @@ public class Admin extends Account {
     private List<Product> products;
     private List<Customer> customers;
     private List<Request> requests;
+    private List<Rate> rates;
 
     private Admin(String email, String password, String phoneNumber, String username) {
+
         super(email, password, phoneNumber, username);
+
         products = new ArrayList<>();
         customers = new ArrayList<>();
         requests = new ArrayList<>();
+        rates = new ArrayList<>();
     }
 
     public static Admin getInstance() {
+
         if (instance == null) {
             instance = new Admin("admin@gmail.com", "admin", "", "admin");
         }
+
         return instance;
     }
 
@@ -38,5 +45,9 @@ public class Admin extends Account {
 
     public List<Request> getRequests() {
         return requests;
+    }
+
+    public List<Rate> getRates() {
+        return rates;
     }
 }

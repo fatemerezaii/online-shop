@@ -7,14 +7,11 @@ import enums.Category;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -446,9 +443,9 @@ public class ProductsController {
 
     private void openProductDetails(ActionEvent event, Product product) {
         try {
-            FXMLLoader loader = SceneManager.loadFXML("ProductDetails.fxml");
-            Parent root = loader.getRoot();
-            ProductDetailsController controller = loader.getController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/onlineShop/ProductDetails.fxml"));
+            Parent root = loader.load();
+            ProductDetailsViewController controller = loader.getController();
             controller.setProduct(product);
             SceneManager.switchScene(event, root);
         } catch (IOException e) {
