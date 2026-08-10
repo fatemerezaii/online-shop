@@ -1,10 +1,6 @@
 package controller;
 
-import enums.CommentStatus;
-import model.Comment;
-import model.Rate;
 import model.accounts.Admin;
-import model.accounts.Customer;
 import model.products.Product;
 import model.products.electronicProduct.PC;
 import model.products.electronicProduct.storageEquipment.StorageEquipment;
@@ -238,26 +234,6 @@ public class ProductController {
         return (int) Math.ceil((double) products.size() / productsPerPage);
     }
 
-    public String addProduct(Product product) {
-
-        if (product == null) {
-            return "Product cannot be null!";
-        }
-
-        for (Product p : products) {
-            if (p.getProductId() == product.getProductId()) {
-                return "Product ID already exists!";
-            }
-        }
-
-        if (product.getInventory() < 0) {
-            return "Inventory cannot be negative!";
-        }
-
-        products.add(product);
-
-        return "Product added successfully.";
-    }
 
     public String removeProduct(int productId) {
 

@@ -20,4 +20,11 @@ public class Pen extends Stationery{
     public void setColor(String color) {
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "Pen{" +
+                "color='" + color + '\'' +
+                '}';
+    }
 }

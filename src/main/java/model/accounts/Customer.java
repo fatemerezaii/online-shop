@@ -59,4 +59,14 @@ public class Customer extends Account{
     public void setShoppingCart(List<Product> shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "credit=" + credit +
+                ", factors=" + factors +
+                ", history='" + history + '\'' +
+                ", shoppingCart=" + shoppingCart +
+                '}';
+    }
 }

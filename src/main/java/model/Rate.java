@@ -37,4 +37,13 @@ public class Rate {
     public void setUser(Customer user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Rate{" +
+                "product=" + product +
+                ", user=" + user +
+                ", score=" + score +
+                '}';
+    }
 }

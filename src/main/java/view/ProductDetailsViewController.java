@@ -28,8 +28,7 @@ public class ProductDetailsViewController {
 
     private Product product;
 
-    private final controller.ProductDetailsController productController =
-            new controller.ProductDetailsController();
+    private final controller.ProductDetailsController productController = new controller.ProductDetailsController();
 
 
     @FXML

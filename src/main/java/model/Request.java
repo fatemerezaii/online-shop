@@ -49,4 +49,14 @@ public class Request {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "Request{" +
+                "data=" + data +
+                ", id=" + id +
+                ", sender=" + sender +
+                ", type=" + type +
+                ", status=" + status +
+                '}';
+    }
 }

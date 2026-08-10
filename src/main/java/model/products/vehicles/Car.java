@@ -30,4 +30,12 @@ public class Car extends Vehicles{
     public void setAutomate(boolean automate) {
         isAutomate = automate;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "engineVolume=" + engineVolume +
+                ", isAutomate=" + isAutomate +
+                '}';
+    }
 }

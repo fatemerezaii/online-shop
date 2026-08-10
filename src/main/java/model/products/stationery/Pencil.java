@@ -21,4 +21,11 @@ public class Pencil extends Stationery {
     public void setPencilType(PencilType pencilType) {
         this.pencilType = pencilType;
     }
+
+    @Override
+    public String toString() {
+        return "Pencil{" +
+                "pencilType=" + pencilType +
+                '}';
+    }
 }

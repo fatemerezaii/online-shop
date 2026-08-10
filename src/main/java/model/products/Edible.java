@@ -30,4 +30,12 @@ public class Edible extends Product{
     public void setProductionDate(String productionDate) {
         this.productionDate = productionDate;
     }
+
+    @Override
+    public String toString() {
+        return "Edible{" +
+                "expiry='" + expiry + '\'' +
+                ", productionDate='" + productionDate + '\'' +
+                '}';
+    }
 }

@@ -48,4 +48,14 @@ public class Factor {
     public void setPayedPrice(double payedPrice) {
         this.payedPrice = payedPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Factor{" +
+                "boughtProducts=" + boughtProducts +
+                ", factorId=" + factorId +
+                ", factorDate='" + factorDate + '\'' +
+                ", payedPrice=" + payedPrice +
+                '}';
+    }
 }

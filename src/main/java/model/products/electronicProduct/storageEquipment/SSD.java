@@ -30,4 +30,12 @@ public class SSD extends StorageEquipment{
     public void setWritingSpeed(String writingSpeed) {
         this.writingSpeed = writingSpeed;
     }
+
+    @Override
+    public String toString() {
+        return "SSD{" +
+                "readingSpeed='" + readingSpeed + '\'' +
+                ", writingSpeed='" + writingSpeed + '\'' +
+                '}';
+    }
 }

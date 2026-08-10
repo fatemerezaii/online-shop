@@ -57,4 +57,15 @@ public class Comment {
     public void setUser(Customer user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "hasBought=" + hasBought +
+                ", user=" + user +
+                ", productId=" + productId +
+                ", text='" + text + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

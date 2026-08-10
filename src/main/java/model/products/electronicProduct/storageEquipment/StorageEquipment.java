@@ -21,4 +21,11 @@ public class StorageEquipment extends ElectronicProduct {
     public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
+
+    @Override
+    public String toString() {
+        return "StorageEquipment{" +
+                "capacity=" + capacity +
+                '}';
+    }
 }

@@ -20,4 +20,11 @@ public class Memory extends StorageEquipment{
     public void setUSBVersion(String USBVersion) {
         this.USBVersion = USBVersion;
     }
+
+    @Override
+    public String toString() {
+        return "Memory{" +
+                "USBVersion='" + USBVersion + '\'' +
+                '}';
+    }
 }

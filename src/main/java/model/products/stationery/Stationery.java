@@ -21,4 +21,11 @@ public class Stationery extends Product {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Stationery{" +
+                "country='" + country + '\'' +
+                '}';
+    }
 }

@@ -21,4 +21,11 @@ public class Bicycle extends Vehicles {
     public void setBicycleType(BicycleType bicycleType) {
         this.bicycleType = bicycleType;
     }
+
+    @Override
+    public String toString() {
+        return "Bicycle{" +
+                "bicycleType=" + bicycleType +
+                '}';
+    }
 }

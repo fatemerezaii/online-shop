@@ -23,10 +23,4 @@ public class SceneManager {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-    public static FXMLLoader loadFXML(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com.example.onlineShop/" + fxmlFile));
-        loader.load();
-        return loader;
-    }
 }

@@ -1,6 +1,5 @@
 package controller;
 
-import controller.SessionManager;
 import enums.BicycleType;
 import enums.Category;
 import enums.PencilType;

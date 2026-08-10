@@ -31,4 +31,12 @@ public class ElectronicProduct extends Product {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "ElectronicProduct{" +
+                "dimensions=" + dimensions +
+                ", weight=" + weight +
+                '}';
+    }
 }

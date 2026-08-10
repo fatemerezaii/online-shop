@@ -50,4 +50,14 @@ public class Admin extends Account {
     public List<Rate> getRates() {
         return rates;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "customers=" + customers +
+                ", products=" + products +
+                ", requests=" + requests +
+                ", rates=" + rates +
+                '}';
+    }
 }

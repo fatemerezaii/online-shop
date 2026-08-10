@@ -89,4 +89,18 @@ public class Product {
     public void setInventory(int inventory) {
         this.inventory = inventory;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "averageRating=" + averageRating +
+                ", productId=" + productId +
+                ", name='" + name + '\'' +
+                ", cost=" + cost +
+                ", status='" + status + '\'' +
+                ", category=" + category +
+                ", comments=" + comments +
+                ", inventory=" + inventory +
+                '}';
+    }
 }

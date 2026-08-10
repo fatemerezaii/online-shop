@@ -30,4 +30,12 @@ public class PC extends ElectronicProduct{
     public void setRAMCapacity(String RAMCapacity) {
         this.RAMCapacity = RAMCapacity;
     }
+
+    @Override
+    public String toString() {
+        return "PC{" +
+                "CPUType='" + CPUType + '\'' +
+                ", RAMCapacity='" + RAMCapacity + '\'' +
+                '}';
+    }
 }
