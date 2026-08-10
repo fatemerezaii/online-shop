@@ -38,7 +38,6 @@ public class SignUpController {
         else{
             showAlert("Failed", result);
         }
-        SceneManager.switchScene(event, "");
     }
 
     private void showAlert(String title, String msg) {
@@ -49,4 +48,9 @@ public class SignUpController {
         alert.showAndWait();
     }
 
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        SceneManager.switchScene(event, "MainPage.fxml");
+
+    }
 }

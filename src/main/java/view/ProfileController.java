@@ -19,6 +19,7 @@ public class ProfileController {
 
     @FXML
     private Label emailText;
+
     @FXML
     private Label phoneNumberText;
 
@@ -27,9 +28,13 @@ public class ProfileController {
 
     private Customer customer;
 
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
-
+        if (customer == null) {
+            System.out.println("ERROR: Customer is null!");
+            return;
+        }
         usernameText.setText(customer.getUsername());
         emailText.setText(customer.getEmail());
         phoneNumberText.setText(customer.getPhoneNumber());

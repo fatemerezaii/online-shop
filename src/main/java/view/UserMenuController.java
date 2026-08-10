@@ -1,6 +1,7 @@
 package view;
 
 import controller.SceneManager;
+import controller.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +25,6 @@ public class UserMenuController {
     @FXML
     private Button profileBtn;
 
-    private Customer customer;
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     @FXML
     void credit(ActionEvent event) throws IOException {
@@ -47,7 +43,12 @@ public class UserMenuController {
 
     @FXML
     void profile(ActionEvent event) throws IOException {
-
+        Customer customer = SessionManager.getCurrentCustomer();
+        System.out.println("Profile customer from Session = " + customer);
+        if (customer == null) {
+            System.out.println("ERROR: No customer is logged in!");
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/onlineShop/Profile.fxml"));
         Parent root = loader.load();
         ProfileController controller = loader.getController();

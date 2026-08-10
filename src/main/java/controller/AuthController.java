@@ -36,12 +36,12 @@ public class AuthController {
         if (phoneExists(phoneNumber)) {
             return "Phone number already exists!";
         }
-
         Customer customer = new Customer(email, password, phoneNumber, username);
         Admin admin = Admin.getInstance();
         admin.getCustomers().add(customer);
         Request request = new Request(customer, RequestType.REGISTER, customer);
         admin.getRequests().add(request);
+        login(username, password);
         return "Registration request sent successfully.";
     }
 
@@ -62,7 +62,10 @@ public class AuthController {
                 if (!customer.getPassword().equals(password)) {
                     return "Wrong password!";
                 }
+                System.out.println("Customer found: " + customer);
+                System.out.println("Customer username: " + customer.getUsername());
                 SessionManager.login(customer);
+                System.out.println("Session after login: " + SessionManager.getCurrentCustomer());
                 return "Successfully logged in";
             }
         }

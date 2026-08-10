@@ -5,99 +5,52 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0"
-            prefWidth="800.0"
-            style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.LoginController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom right, #141E30, #243B55);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginController">
 
     <children>
 
-        <StackPane AnchorPane.topAnchor="0.0"
-                   AnchorPane.bottomAnchor="0.0"
-                   AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0">
+        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-            <VBox alignment="CENTER"
-                  spacing="22.0"
-                  maxWidth="360.0">
+            <VBox alignment="CENTER" maxWidth="360.0" spacing="22.0">
 
-                <Label text="Welcome Back"
-                       textFill="WHITE">
+                <Label text="Welcome Back" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="32.0"/>
+                        <Font name="System Bold" size="32.0" />
                     </font>
                 </Label>
 
-                <Label text="Login to your Online Shop account"
-                       textFill="#B8C6D9">
+                <Label text="Login to your Online Shop account" textFill="#B8C6D9">
                     <font>
-                        <Font name="System" size="15.0"/>
+                        <Font name="System" size="15.0" />
                     </font>
                 </Label>
 
-                <VBox alignment="CENTER"
-                      spacing="14.0"
-                      maxWidth="300.0">
+                <VBox alignment="CENTER" maxWidth="300.0" spacing="14.0">
 
                     <!-- Username -->
-                    <TextField fx:id="usernameField"
-                               promptText="Username"
-                               prefWidth="300.0"
-                               prefHeight="48.0"
-                               style="-fx-background-color: rgba(255,255,255,0.12);
-                                      -fx-text-fill: #FFFFFF;
-                                      -fx-prompt-text-fill: #AAB7C8;
-                                      -fx-font-size: 14px;
-                                      -fx-background-radius: 10px;
-                                      -fx-border-color: rgba(255,255,255,0.25);
-                                      -fx-border-radius: 10px;
-                                      -fx-border-width: 1px;"/>
+                    <TextField fx:id="usernameField" prefHeight="48.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: rgba(255,255,255,0.12);                                       -fx-text-fill: #FFFFFF;                                       -fx-prompt-text-fill: #AAB7C8;                                       -fx-font-size: 14px;                                       -fx-background-radius: 10px;                                       -fx-border-color: rgba(255,255,255,0.25);                                       -fx-border-radius: 10px;                                       -fx-border-width: 1px;" />
 
-                    <PasswordField fx:id="passwordField"
-                                   promptText="Password"
-                                   prefWidth="300.0"
-                                   prefHeight="48.0"
-                                   style="-fx-background-color: rgba(255,255,255,0.12);
-                                          -fx-text-fill: #FFFFFF;
-                                          -fx-prompt-text-fill: #AAB7C8;
-                                          -fx-font-size: 14px;
-                                          -fx-background-radius: 10px;
-                                          -fx-border-color: rgba(255,255,255,0.25);
-                                          -fx-border-radius: 10px;
-                                          -fx-border-width: 1px;"/>
+                    <PasswordField fx:id="passwordField" prefHeight="48.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: rgba(255,255,255,0.12);                                           -fx-text-fill: #FFFFFF;                                           -fx-prompt-text-fill: #AAB7C8;                                           -fx-font-size: 14px;                                           -fx-background-radius: 10px;                                           -fx-border-color: rgba(255,255,255,0.25);                                           -fx-border-radius: 10px;                                           -fx-border-width: 1px;" />
 
-                    <Button fx:id="loginBtn"
-                            mnemonicParsing="false"
-                            onAction="#login"
-                            text="Login"
-                            prefWidth="300.0"
-                            prefHeight="48.0"
-                            style="-fx-background-color: #FFFFFF;
-                                   -fx-text-fill: #243B55;
-                                   -fx-font-size: 16px;
-                                   -fx-font-weight: bold;
-                                   -fx-background-radius: 10px;
-                                   -fx-cursor: hand;"/>
+                    <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" prefHeight="48.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;" text="Login" />
 
                 </VBox>
 
                 <!-- Bottom Text -->
-                <Label text="Enter your credentials to continue"
-                       textFill="#8FA3BA">
+                <Label text="Enter your credentials to continue" textFill="#8FA3BA">
                     <font>
-                        <Font name="System" size="13.0"/>
+                        <Font name="System" size="13.0" />
                     </font>
                 </Label>
 
             </VBox>
 
         </StackPane>
+      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;                                    -fx-text-fill: #243B55;                                    -fx-font-size: 16px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 10px;                                    -fx-cursor: hand;" text="Back" />
 
     </children>
 
